@@ -1,9 +1,9 @@
-name: Run Script Daily
+aname: Run Script Daily - Delta
 
 on:
   schedule:
-    - cron: "35 23 * * *"  
-    workflow_dispatch:
+    - cron: "40 23 * * *"  
+  workflow_dispatch:  
 
 jobs:
   run-script:
@@ -19,7 +19,10 @@ jobs:
           python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: |
+          pip install -r requirements.txt
+          pip install papermill  
 
-      - name: Run script
-        run: python main.ipynb
+      - name: Run Jupyter notebook
+        run: |
+          papermill main.ipynb main_output.ipynb  
