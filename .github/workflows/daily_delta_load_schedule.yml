@@ -2,22 +2,24 @@ name: Run Script Daily
 
 on:
   schedule:
-    - cron: "30 23 * * *"
+    - cron: "35 23 * * *"  
+    workflow_dispatch:
 
 jobs:
   run-script:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Python
-        uses: actions/setup-python@v3
+        uses: actions/setup-python@v4
         with:
-          python-version: "3.9"
+          python-version: '3.10'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt  
+        run: pip install -r requirements.txt
 
       - name: Run script
-        run: python D:\github\ETL\UCIHeartDisease_ETL\main.ipynb
+        run: python main.ipynb
