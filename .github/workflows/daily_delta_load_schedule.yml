@@ -22,7 +22,9 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install papermill  
+          python -m pip install ipykernel 
 
       - name: Run Jupyter notebook
         run: |
+          python -m ipykernel install --user 
           papermill main.ipynb main_output.ipynb  
